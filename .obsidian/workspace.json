@@ -114,9 +114,33 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "64ac68cd2414daa2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Android WebView/WebView 工作原理.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "9c6cdbcef9963f8b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Android 专栏.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 8
+        "currentTab": 10
       }
     ],
     "direction": "vertical"
@@ -182,7 +206,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Android Kotlin/Kotlin -协程.md",
+                "file": "Android 专栏.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -199,7 +223,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Android Kotlin/Kotlin -协程.md",
+                "file": "Android 专栏.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -222,7 +246,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Android Kotlin/Kotlin -协程.md"
+                "file": "Android 专栏.md"
               }
             }
           }
@@ -243,8 +267,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "f665f289369fd527",
+  "active": "9c6cdbcef9963f8b",
   "lastOpenFiles": [
+    "Android WebView/WebView 工作原理.md",
+    "Android Kotlin/Kotlin -协程.md",
     "Android Gradle/Gradle 插件.md",
     "Android Jetpack/Jetpack - Lifecycle.md",
     "Android 组件/Android RecyclerView.md",
@@ -252,8 +278,6 @@
     "Android 系统源码解析/Android - AMS.md",
     "Android 系统适配/Android 2.2.md",
     "Android 开源库/test.md",
-    "Android 技术/test.md",
-    "Android 架构/01 - MVC.md",
-    "Android 架构/02 - MVP.md"
+    "Android 技术/test.md"
   ]
 }
