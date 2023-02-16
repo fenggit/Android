@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "bff7283dc9bf5b1f",
+        "id": "25448eddf5f211cf",
         "type": "tabs",
         "children": [
           {
-            "id": "63603f3267313edb",
+            "id": "016aca4de05998bb",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Android Gradle/Gradle 插件.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Android Gradle/Gradle 插件.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Android Gradle/Gradle 插件.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Android Gradle/Gradle 插件.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -146,13 +138,13 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "63603f3267313edb",
+  "active": "016aca4de05998bb",
   "lastOpenFiles": [
+    "Android Gradle/Gradle 插件.md",
     "Android 专栏/Android View/View - 基本原理.md",
     "Android 专栏.md",
     "Android 专栏/Android WebView/WebView 工作原理.md",
     "Android Kotlin/Kotlin -协程.md",
-    "Android Gradle/Gradle 插件.md",
     "Android Jetpack/Jetpack - Lifecycle.md",
     "Android 组件/Android RecyclerView.md",
     "Android 性能优化/Android 渲染优化.md",
