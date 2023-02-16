@@ -11,11 +11,40 @@
             "id": "559e12cd0fbe3ac5",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Android 技术/test.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "279097b315a431e9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Android 开源库/test.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "a35cfd2711573111",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Android 系统适配/未命名.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -81,6 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Android 系统适配/未命名.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Android 系统适配/未命名.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +149,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Android 系统适配/未命名.md"
+              }
             }
           }
         ]
@@ -138,8 +171,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "559e12cd0fbe3ac5",
+  "active": "a35cfd2711573111",
   "lastOpenFiles": [
+    "Android 开源库/test.md",
+    "Android 技术/test.md",
     "Android 架构/01 - MVC.md",
     "Android 架构/02 - MVP.md",
     "Android 架构/03 - MVVM.md",
