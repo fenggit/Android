@@ -4,139 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "dd0bfc68f6981b8a",
+        "id": "6d152f80626e780c",
         "type": "tabs",
         "children": [
           {
-            "id": "559e12cd0fbe3ac5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Android 技术/test.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "279097b315a431e9",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Android 开源库/test.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "a35cfd2711573111",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Android 系统适配/Android 2.2.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "44e5bed5dcb3da0c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Android 系统源码解析/Android - AMS.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "2ddeab1c51d79699",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Android 性能优化/Android 渲染优化.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "13d775f5b708c3cf",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Android 组件/Android RecyclerView.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "7bd8475edc7fb286",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Android Gradle/Gradle 插件.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "6d3b71054d666f9d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Android Gradle/Gradle 插件.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "f665f289369fd527",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Android Kotlin/Kotlin -协程.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "64ac68cd2414daa2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Android 专栏/Android WebView/WebView 工作原理.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "9c6cdbcef9963f8b",
+            "id": "f3bc39b5a9c45688",
             "type": "leaf",
             "state": {
               "type": "empty",
               "state": {}
             }
           }
-        ],
-        "currentTab": 10
+        ]
       }
     ],
     "direction": "vertical"
@@ -259,8 +138,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "7b58c0825758889e",
+  "active": "f3bc39b5a9c45688",
   "lastOpenFiles": [
+    "Android 专栏/Android View/View - 基本原理.md",
     "Android 专栏.md",
     "Android 专栏/Android WebView/WebView 工作原理.md",
     "Android Kotlin/Kotlin -协程.md",
@@ -269,7 +149,6 @@
     "Android 组件/Android RecyclerView.md",
     "Android 性能优化/Android 渲染优化.md",
     "Android 系统源码解析/Android - AMS.md",
-    "Android 系统适配/Android 2.2.md",
-    "Android 开源库/test.md"
+    "Android 系统适配/Android 2.2.md"
   ]
 }
