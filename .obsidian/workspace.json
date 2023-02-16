@@ -121,7 +121,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Android WebView/WebView 工作原理.md",
+                "file": "Android 专栏/Android WebView/WebView 工作原理.md",
                 "mode": "source",
                 "source": false
               }
@@ -131,12 +131,8 @@
             "id": "9c6cdbcef9963f8b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Android 专栏.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ],
@@ -206,7 +202,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Android 专栏.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -223,7 +218,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Android 专栏.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -245,9 +239,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Android 专栏.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -267,9 +259,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "9c6cdbcef9963f8b",
+  "active": "7b58c0825758889e",
   "lastOpenFiles": [
-    "Android WebView/WebView 工作原理.md",
+    "Android 专栏.md",
+    "Android 专栏/Android WebView/WebView 工作原理.md",
     "Android Kotlin/Kotlin -协程.md",
     "Android Gradle/Gradle 插件.md",
     "Android Jetpack/Jetpack - Lifecycle.md",
@@ -277,7 +270,6 @@
     "Android 性能优化/Android 渲染优化.md",
     "Android 系统源码解析/Android - AMS.md",
     "Android 系统适配/Android 2.2.md",
-    "Android 开源库/test.md",
-    "Android 技术/test.md"
+    "Android 开源库/test.md"
   ]
 }
