@@ -31,6 +31,13 @@ arm64-v8a
 
 [Google Play 政策说明](https://support.google.com/googleplay/android-developer/answer/11926878?hl=zh-Hans)
 
-从 2023 年 8 月 31 日起，新应用和应用更新的目标 API 级别必须为 33（Android 13系统），才能提交给 Google Play（Wear OS 版本的目标 API 级别必须为 30），也就是开发者需要将 targetSdkVersion 最少设置为33，
+从 2023 年 8 月 31 日起，新应用和应用更新的目标 API 级别必须为 33（Android 13系统），才能提交给 Google Play（Wear OS 版本的目标 API 级别必须为 30），也就是开发者需要将 targetSdkVersion 最少设置为33。
 
 ![image-20230425144527214](images/image-20230425144527214.png)
+
+
+
+## 3、Android App Bundles ： aab
+
+- https://mp.weixin.qq.com/s/OBBrFQcK1UT1NfsEuBdq3A
+- https://developer.android.com/guide/playcore/feature-delivery?hl=zh-cn
