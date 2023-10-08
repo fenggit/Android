@@ -1,5 +1,16 @@
 # Jetpack - ViewModel 使用篇
 
+ViewModel 解决什么问题：
+
+- 从网络获取数据，设置到textView，旋转屏幕，数据丢失（案例）
+- EditText设置数据，旋转屏幕，数据丢失（案例）
+
+
+
+ViewModel 可以保存临时数据，防止旋转屏幕丢失
+
+
+
 ## ViewModel 的使用场景
 
 当我们开发应用的时候，修改应用配置的时候，Activity / Fragment 有可能重新创建，这时候会导致数据丢失，ViewModel 就是为了解决数据丢失问题，才出现的。比如：

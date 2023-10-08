@@ -24,11 +24,17 @@
 
 
 
+协程结构：
+
+协程任务调度器
+
+![image-20230905095611959](images/image-20230905095611959.png)
+
 ## 2. 协程使用
 
 ### 2.1 添加依赖库
 
-由于协程一般和lifecycle、viewmodel结合使用，所以添加依赖的时候，也需要lifecycle和viewmodel
+协程一般和lifecycle、viewmodel结合使用，所以添加依赖的时候，也需要 lifecycle 和 viewmodel
 
 > 协程依赖库：https://github.com/hltj/kotlinx.coroutines-cn/blob/master/README.md#using-in-your-projects 
 
@@ -37,7 +43,7 @@
 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0"
 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.0"
 
-// lifecycle和viewmodel依赖库
+// lifecycle 和 viewmodel 依赖库
 implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
 implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
 ```
@@ -46,24 +52,17 @@ implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
 
 ### 2.2 启动协程
 
-开启协程是通过 launch 返回的是 Job 对象，涉及到协程作用域（CoroutineScope），不同地方，使用不同的协程作用域，主要有以下几种方式:
-
-- GlobalScope：全局协程，任何地方可以使用，谨慎使用，启动一个新的线程，在新线程上创建运行协程，不堵塞当前线程
-- lifecycleScope：结合生命周期的，在 Activity / Fragment 中使用
-- viewModelScope：在 ViewModel 中使用
-- runBlocking：创建新的协程，运行在当前线程上，所以会堵塞当前线程，直到协程体结束
+开启协程是通过 launch 返回的是 Job 对象，涉及到协程作用域（CoroutineScope），不同地方，使用不同的协程作用域。
 
 
 
-#### runBlocking
+**协程作用域**
 
-runBlocking 会阻塞当前线程，直到运行结束
-
-```
-runBlocking {
-             
-}
-```
+- GlobalScope：顶级协程，生命周期和App一样长，当前页面销毁了，协程仍然还在，谨慎使用，启动一个新的线程，在新线程上创建运行协程，不堵塞当前线程
+- MainScope：实现是一个函数，可以取消的协程
+- lifecycleScope：只能在 Activity / Fragment 中使用，绑定了 Activity / Fragment 的生命周期
+- viewModelScope：只能在 ViewModel 中使用，绑定了 ViewModel 的生命周期
+- runBlocking：是一个阻塞的函数，创建新的协程，运行在当前线程上，所以会堵塞当前线程，直到协程体结束
 
 
 
@@ -80,6 +79,43 @@ GlobalScope.launch(Dispatchers.Main) { // 主线程执行
 
 }
 ```
+
+
+
+#### MainScope
+
+实现方式一：
+
+```
+val mainScope = MainScope()
+mainScope.launch { 
+            
+}
+
+// 取消，会抛出取消的异常
+mainScope.cancel()
+```
+
+实现方式二：
+
+```
+class KtMainActivity2 : AppCompatActivity(), CoroutineScope by MainScope() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        
+        launch {
+            // TODO 
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        cancel()
+    }
+}
+```
+
+
 
 #### lifecycleScope
 
@@ -102,6 +138,20 @@ viewModelScope.launch(Dispatchers.Main) {
 
 }
 ```
+
+
+
+#### runBlocking
+
+runBlocking 会阻塞当前线程，直到运行结束
+
+```
+runBlocking {
+             
+}
+```
+
+
 
 ### 2.3 取消协程
 
@@ -212,30 +262,36 @@ public fun CoroutineScope.launch(
 
 ### 3.2 协程调度器 （Dispatchers）
 
-- Dispatchers.Main：默认参数，对应的是 Android 主线程
+- Dispatchers.Main： Android 主线程
 
-  - 可以更新UI
+  - 处理UI交互和轻量级任务
 
   - 调用suspend函数
 
   - 更新LiveData数据
 
-- Dispatchers.IO： 此调度程序经过了专门优化，适合在主线程之外执行磁盘或网络 I/O
+- Dispatchers.IO： 非主线程，专门为执行磁盘或网络 I/O进行了优化
 
-  - 操作数据库
+  - 数据库操作
 
   - 网络请求
 
   - 文件读写
 
-- Dispatchers.Default：此调度程序经过了专门优化，使用到线程池，适合在主线程之外执行占用大量 CPU 资源的工作
+- Dispatchers.Default：默认参数，非主线程，专门为CPU密集型任务做了优化，使用到线程池，适合在主线程之外执行占用大量 CPU 资源的工作
 
   - 数据解析
 
-  - 排序
+  - 数组排序
+
+  - 处理差异化判断
 
 - Dispatchers.Unconfined：直接执行，很少使用
 
+  
+  
+  注意：Dispatchers.Default 和 Dispatchers.IO 的取消协程方式一样
+  
   
 
 ### 3.3 协程启动模式（CoroutineStart）
@@ -244,3 +300,9 @@ public fun CoroutineScope.launch(
 - CoroutineStart.LAZY：在需要的时候，执行
 - CoroutineStart.ATOMIC：立刻执行，在开始执行前，无法取消
 - CoroutineStart.UNDISPATCHED：立刻执行，一直运行到第一个suspend
+
+
+
+### 3.4 协程作用域（CoroutineScope）
+
+CoroutineScope 协程作用域可以启动，追踪协程，还可以取消协程
