@@ -56,10 +56,14 @@ implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
 
 
 
-**协程作用域**
+协程取消，会抛出异常
 
-- GlobalScope：顶级协程，生命周期和App一样长，当前页面销毁了，协程仍然还在，谨慎使用，启动一个新的线程，在新线程上创建运行协程，不堵塞当前线程
-- MainScope：实现是一个函数，可以取消的协程
+
+
+CoroutineScope ：**协程作用域**
+
+- GlobalScope：顶级协程，生命周期和App一样长，即使当前页面Activity / Fragment 销毁了，协程仍然还在，谨慎使用。启动一个新的线程，在新线程上创建运行协程，不堵塞当前线程。
+- MainScope：一个特殊协程作用域，可以在 Activity中使用，在 onDestory 中取消，MainScope 是一个函数，函数名是大写的（工厂设计模式）
 - lifecycleScope：只能在 Activity / Fragment 中使用，绑定了 Activity / Fragment 的生命周期
 - viewModelScope：只能在 ViewModel 中使用，绑定了 ViewModel 的生命周期
 - runBlocking：是一个阻塞的函数，创建新的协程，运行在当前线程上，所以会堵塞当前线程，直到协程体结束

@@ -149,12 +149,21 @@ Android Studio 右下角直接操作分支
 
 
 
+####  2.2.3 独立依赖库
+
+由于Android创建项目，一定会有app层级，依赖module，如果不想引用，可以
+
+
+
 ## 3. Git Submodule 命令
 
  #### 3.1 添加子模块
 
 ```
  git submodule add <repository_url> <path>
+ 
+ example:
+ git submodule add git@github.com:Android-Daily/MyAppSubmodule1.git mysubmodule1
 ```
 
 其中，`<repository_url>` 是子模块仓库的 URL，`<path>` 是将子模块放置在父仓库中的相对路径。
@@ -209,3 +218,44 @@ git submodule update --init --recursive --remote
 ```
 
 注意：克隆代码后，检查代码分支
+
+#### 3.6 更新已有的submodule
+
+http://www.git.kim/git/22.html
+
+
+
+```
+git checkout master
+git submodule foreach git pull
+```
+
+
+
+## 4、克隆带子模块的版本库
+
+演示项目：https://github.com/Android-Daily/MyApp
+
+1. clone 代码，里面的submodule并没有拉取
+
+```
+git clone git@github.com:Android-Daily/MyApp.git
+```
+
+
+
+![image-20231025112622978](images/image-20231025112622978.png)
+
+2. 进入 MyApp目录下，拉取依赖 submodule 的代码
+
+   ```
+   git submodule update --init --recursive --remote
+   ```
+
+   更新子模块的时候要注意子模块的分支默认不是main分支，是最新代码的commit id
+
+   ![image-20231025113029878](images/image-20231025113029878.png)
+
+3. 切换分支
+
+   
