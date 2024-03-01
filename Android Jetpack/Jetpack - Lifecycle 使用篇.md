@@ -14,15 +14,22 @@
 
 2. Lifecycle 的定义
 
-Lifecycle 是生命周期感知型组件可执行操作来响应另一个组件（如 activity 和 fragment）的生命周期状态的变化。
-
-[Google 官方文档](https://developer.android.com/jetpack/androidx/releases/lifecycle?hl=zh-cn#declaring_dependencies)
+Lifecycle 是生命周期感知型组件可执行操作来响应另一个组件（如 activity 和 fragment）的生命周期状态的变化。[Google 官方文档](https://developer.android.com/jetpack/androidx/releases/lifecycle?hl=zh-cn#declaring_dependencies)
 
 
 
 3. Lifecycle 的作用
 
-Lifecycle 主要通过观察者的设计模式实现的，当 Activity / Fragment 的生命周期发生变化的时候，就会通知观察者。所有有生命周期的个体，都可以用 Lifecycle 观察，不仅仅只有 Activity / Fragment 才有，只是 Android 系统 Activity / Fragment 默认接入了了Lifecycle 。Lifecycle 是基于状态机的变化，触发生命周期。
+   Lifecycle 通过观察者和观察者的设计模式，监听 Activity / Fragment 生命周期。其中，
+
+   - 被观察者：Activity / Fragment
+   - 观察者：Lifecycle
+
+   ![image-20240123202744822](images/image-20240123202744822.png)
+
+   
+
+   值得一提都是后续 Jetpack 系列所有感知生命周期的库，都是通过 Lifecycle 感知生命周期的，不仅仅只有 Activity / Fragment 才有，只是 Android 系统 Activity / Fragment 默认接入了了Lifecycle 。Lifecycle 是基于状态机的变化，触发生命周期。
 
 
 
@@ -48,7 +55,6 @@ Lifecycle 主要通过观察者的设计模式实现的，当 Activity / Fragmen
 ## Lifecycle 使用
 
 - 官方Demo ：https://github.com/android/architecture-components-samples
-- Lifecycle 主要分为观察者和被观察者
 
 
 
@@ -57,47 +63,20 @@ Lifecycle 主要通过观察者的设计模式实现的，当 Activity / Fragmen
 可以选择需要的添加依赖，最新版本可以查询官网：https://developer.android.com/jetpack/androidx/releases/lifecycle?hl=zh-cn#declaring_dependencies
 
 ```
-    dependencies {
-        val lifecycle_version = "2.5.1"
-        val arch_version = "2.1.0"
+def lifecycle_version = "2.5.1"
 
-        // ViewModel
-        implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
-        // ViewModel utilities for Compose
-        implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
-        // LiveData
-        implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
-        // Lifecycles only (without ViewModel or LiveData)
-        implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
+// only lifecycle
+implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")   
 
-        // Saved state module for ViewModel
-        implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version")
 
-        // Annotation processor
-        kapt("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
-        // alternately - if using Java8, use the following instead of lifecycle-compiler
-        implementation("androidx.lifecycle:lifecycle-common-java8:$lifecycle_version")
-
-        // optional - helpers for implementing LifecycleOwner in a Service
-        implementation("androidx.lifecycle:lifecycle-service:$lifecycle_version")
-
-        // optional - ProcessLifecycleOwner provides a lifecycle for the whole application process
-        implementation("androidx.lifecycle:lifecycle-process:$lifecycle_version")
-
-        // optional - ReactiveStreams support for LiveData
-        implementation("androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version")
-
-        // optional - Test helpers for LiveData
-        testImplementation("androidx.arch.core:core-testing:$arch_version")
-
-        // optional - Test helpers for Lifecycle runtime
-        testImplementation ("androidx.lifecycle:lifecycle-runtime-testing:$lifecycle_version")
-    }
+// LiveData & ViewModel
+implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")	
+implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
 ```
 
 
 
-### 2. 使用
+### 2. 使用 
 
 本文以 Activity 为例。
 
@@ -111,7 +90,7 @@ class LifecycleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lifecycle)
 
-				// 添加监听
+				// 可以添加多个监听
         lifecycle.addObserver(LifeObserver1())
         lifecycle.addObserver(LifeObserver2())
         lifecycle.addObserver(LifeObserver3())
@@ -184,7 +163,7 @@ class LifeObserver2 : LifecycleEventObserver {
 **方式三**
 
 ```
-class LifeObserver3 : DefaultLifecycleObserver {
+class LifeObserver3 : DefaultLifecycleObserver { 
     val TAG = "LifeObserver3"
 
     override fun onCreate(owner: LifecycleOwner) {
@@ -244,6 +223,29 @@ class MyActivity : Activity(), LifecycleOwner {
 
     override fun getLifecycle(): Lifecycle {
         return lifecycleRegistry
+    }
+}
+```
+
+
+
+### 4. 匿名内部类
+
+在系统源码中，经常看到观察者用匿名内部类，这样做的目的是为了**单一职责**
+
+```
+class LifecycleActivity2 : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_lifecycle)
+
+        lifecycle.addObserver(LifeObserver())
+    }
+    
+    inner class LifeObserver : DefaultLifecycleObserver {
+        override fun onCreate(owner: LifecycleOwner) {
+            super.onCreate(owner)
+        }
     }
 }
 ```

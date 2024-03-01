@@ -6,6 +6,24 @@
 
 Android 应用开发中的一个常见问题，就是如何在组件之间有效地共享数据并确保 UI 及时更新？在传统的 Android 应用程序中，这通常需要使用回调或观察者模式来实现。但是这种方法常常容易出错，因为它们通常需要手动进行清理，并且容易导致内存泄漏。
 
+
+
+LiveData 核心就是数据驱动 UI 更新，还可以感知页面的是否可见，这样做的好处就是页面处于不可见的时候，数据变更了，UI可以先不更新，节省资源，当页面恢复可见的时候，再更新 UI。
+
+
+
+对比 Handler，Handler不管界面不可见都会触发，这样做的坏处就是有可能内存泄露
+
+![image-20240229094519673](images/image-20240229094519673.png)
+
+
+
+感知页面的是否可见的实现原理是通过读取 Lifecyle 的 状态实现的，只有当状态是 STARTED和 RESUME 才触发监听，更新 UI；
+
+Handler 是不管页面的是否可见，都会触发
+
+
+
 背景：UI control 对数据访问
 
 ![image-20230425181616076](images/image-20230425181616076.png)
@@ -97,6 +115,54 @@ liveData.observe(this, object : Observer<String> {
 
 
 
+### 单例模式实现
+
+LiveData 可以替代 EventBus，数据更新和UI更新可以完全隔离，分工明确，对用户暴漏简单的接口，非常简单。
+
+```
+object SingleLiveData {  // 单例模式
+    val info1 by lazy {  // 懒加载
+        MutableLiveData<String>()
+    }
+}
+```
+
+
+
+Activity
+
+```
+        // 监听
+        SingleLiveData.info1.observe(this, object : Observer<String> {
+            override fun onChanged(t: String?) {
+                // update ui
+                Log.e("LiveDataActivity", "SingleLiveData : $t")
+            }
+        })
+
+
+        // 数据更新
+        SingleLiveData.info1.value = "default value" // 主线程
+        thread {
+            Thread.sleep(3000)
+            SingleLiveData.info1.postValue("hello( child thread )") // 子线程
+        }
+```
+
+
+
+DataBing可以解决手动监听更新UI
+
+
+
+数据粘性，或者说是数据倒灌，是指我先发送数据变更，再监听数据变化还能接受到之前发送的数据；
+
+常规逻辑是：先订阅，再触发数据变更，才能收到数据变化监听；而 LiveData 打破这个逻辑，先发后监听，也能收到之前发送的数据，注意这是只能接收到之前发送的最后1条数据
+
+
+
+
+
 ## LiveData 和 ViewModel 的使用（组合）
 
 
@@ -125,3 +191,41 @@ LiveData 数据存储
 
 
 ![image-20230428153244207](images/image-20230428153244207.png)
+
+
+
+### 中间件
+
+MutableLiveData源码这一层使用了中间件，LiveData源码特别多，但是提供给用户的MutableLiveData API层，非常简单，装饰者模式（？？？）。
+
+```
+public class MutableLiveData<T> extends LiveData<T> {
+
+    /**
+     * Creates a MutableLiveData initialized with the given {@code value}.
+     *
+     * @param value initial value
+     */
+    public MutableLiveData(T value) {
+        super(value);
+    }
+
+    /**
+     * Creates a MutableLiveData with no value assigned to it.
+     */
+    public MutableLiveData() {
+        super();
+    }
+
+    @Override
+    public void postValue(T value) {
+        super.postValue(value);
+    }
+
+    @Override
+    public void setValue(T value) {
+        super.setValue(value);
+    }
+}
+```
+
